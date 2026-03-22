@@ -72,4 +72,55 @@ public class RoverTests
 
         Assert.Equal(Direction.South, rover.Direction);
     }
+
+    [Fact]
+    public void Executes_forward_command()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.Execute(new char[] {'f'});
+
+        Assert.Equal(new Position(0, 1), rover.Position);
+    }
+
+    [Fact]
+    public void Executes_backward_command()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.Execute(new char[] {'b'});
+
+        Assert.Equal(new Position(0, -1), rover.Position);
+    }
+
+    [Fact]
+    public void Executes_turn_left_command()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.Execute(new char[] {'l'});
+
+        Assert.Equal(Direction.West, rover.Direction);
+    }
+
+    [Fact]
+    public void Executes_turn_right_command()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.Execute(new char[] {'r'});
+
+        Assert.Equal(Direction.East, rover.Direction);
+    }
+
+    [Fact]
+    public void Executes_multiple_commands_in_order()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.Execute(new char[] {'f', 'r', 'f', 'l', 'b'});
+
+        Assert.Equal(new Position(1, 0), rover.Position);
+        Assert.Equal(Direction.North, rover.Direction);
+    }
 }

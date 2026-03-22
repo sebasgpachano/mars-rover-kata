@@ -58,4 +58,19 @@ public class Rover
             _ => Direction
         };
     }
+
+    public void Execute(char[] commands)
+    {
+        foreach (var command in commands)
+        {
+            switch (command)
+            {
+                case 'f': MoveForward(); break;
+                case 'b': MoveBackward(); break;
+                case 'l': TurnLeft(); break;
+                case 'r': TurnRight(); break;
+                default: throw new ArgumentException($"Invalid command '{command}'");
+            }
+        }
+    }
 }
