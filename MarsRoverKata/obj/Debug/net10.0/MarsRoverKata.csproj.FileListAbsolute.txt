@@ -1,0 +1,11 @@
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\bin\Debug\net10.0\MarsRoverKata.deps.json
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\bin\Debug\net10.0\MarsRoverKata.dll
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\bin\Debug\net10.0\MarsRoverKata.pdb
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.AssemblyInfoInputs.cache
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.AssemblyInfo.cs
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.csproj.CoreCompileInputs.cache
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.dll
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\refint\MarsRoverKata.dll
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\MarsRoverKata.pdb
+C:\Users\sebas\mars-rover-kata\MarsRoverKata\obj\Debug\net10.0\ref\MarsRoverKata.dll

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MarsRoverKata.Tests/MarsRoverKata.Tests.csproj" />
+  <Project Path="MarsRoverKata/MarsRoverKata.csproj" />
+</Solution>
