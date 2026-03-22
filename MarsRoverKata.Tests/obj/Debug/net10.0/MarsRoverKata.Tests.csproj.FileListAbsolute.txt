@@ -98,3 +98,4 @@ C:\Users\sebas\mars-rover-kata\MarsRoverKata.Tests\obj\Debug\net10.0\refint\Mars
 C:\Users\sebas\mars-rover-kata\MarsRoverKata.Tests\obj\Debug\net10.0\MarsRoverKata.Tests.pdb
 C:\Users\sebas\mars-rover-kata\MarsRoverKata.Tests\obj\Debug\net10.0\MarsRoverKata.Tests.genruntimeconfig.cache
 C:\Users\sebas\mars-rover-kata\MarsRoverKata.Tests\obj\Debug\net10.0\ref\MarsRoverKata.Tests.dll
+C:\Users\sebas\mars-rover-kata\MarsRoverKata.Tests\obj\Debug\net10.0\MarsRoverKata.Tests.sourcelink.json
