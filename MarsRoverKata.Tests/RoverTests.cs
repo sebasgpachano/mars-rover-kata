@@ -32,4 +32,44 @@ public class RoverTests
 
         Assert.Equal(new Position(0, -1), rover.Position);
     }
+
+    [Fact]
+    public void Turns_left_from_north_to_west()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.TurnLeft();
+
+        Assert.Equal(Direction.West, rover.Direction);
+    }
+
+    [Fact]
+    public void Turns_left_from_west_to_south()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.West);
+
+        rover.TurnLeft();
+
+        Assert.Equal(Direction.South, rover.Direction);
+    }
+
+    [Fact]
+    public void Turns_right_from_north_to_east()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        rover.TurnRight();
+
+        Assert.Equal(Direction.East, rover.Direction);
+    }
+
+    [Fact]
+    public void Turns_right_from_east_to_south()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.East);
+
+        rover.TurnRight();
+
+        Assert.Equal(Direction.South, rover.Direction);
+    }
 }

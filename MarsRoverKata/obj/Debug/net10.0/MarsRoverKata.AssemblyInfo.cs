@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MarsRoverKata")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12cea20fed2f7c6ae1061664f951ddf3348a044a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97f833ffdbe3fbfd4a76fc3119cfb8a0e5cc5971")]
 [assembly: System.Reflection.AssemblyProductAttribute("MarsRoverKata")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MarsRoverKata")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
