@@ -75,4 +75,18 @@ public class Rover
             }
         }
     }
+
+    public void Execute(IEnumerable<ICommand> commands)
+{
+    if (commands == null)
+        throw new ArgumentNullException(nameof(commands));
+
+    foreach (var command in commands)
+    {
+        if (command == null)
+            throw new ArgumentException("Command cannot be null", nameof(commands));
+
+        command.Execute(this);
+    }
+}
 }
