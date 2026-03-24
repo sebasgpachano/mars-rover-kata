@@ -7,6 +7,8 @@ public class Rover
 
     public Rover(Position position, Direction direction)
     {
+        if (position == null) throw new ArgumentNullException(nameof(position));
+        
         Position = position;
         Direction = direction;
     }
@@ -61,9 +63,11 @@ public class Rover
 
     public void Execute(char[] commands)
     {
+        if (commands == null) throw new ArgumentNullException(nameof(commands));
+
         foreach (var command in commands)
         {
-            switch (command)
+            switch (char.ToLower(command))
             {
                 case 'f': MoveForward(); break;
                 case 'b': MoveBackward(); break;
