@@ -74,53 +74,79 @@ public class RoverTests
     }
 
     [Fact]
-    public void Executes_forward_command()
+    public void Executes_forward_command_with_parser()
     {
         var rover = new Rover(new Position(0, 0), Direction.North);
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'f' });
 
-        rover.Execute(new char[] {'f'});
+        rover.Execute(commands);
 
         Assert.Equal(new Position(0, 1), rover.Position);
     }
 
     [Fact]
-    public void Executes_backward_command()
+    public void Executes_backward_command_with_parser()
     {
         var rover = new Rover(new Position(0, 0), Direction.North);
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'b' });
 
-        rover.Execute(new char[] {'b'});
+        rover.Execute(commands);
 
         Assert.Equal(new Position(0, -1), rover.Position);
     }
 
     [Fact]
-    public void Executes_turn_left_command()
+    public void Executes_turn_left_command_with_parser()
     {
         var rover = new Rover(new Position(0, 0), Direction.North);
-
-        rover.Execute(new char[] {'l'});
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'l' });
+    
+        rover.Execute(commands);
 
         Assert.Equal(Direction.West, rover.Direction);
     }
 
     [Fact]
-    public void Executes_turn_right_command()
+    public void Executes_turn_right_command_with_parser()
     {
         var rover = new Rover(new Position(0, 0), Direction.North);
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'r' });
 
-        rover.Execute(new char[] {'r'});
+        rover.Execute(commands);
 
         Assert.Equal(Direction.East, rover.Direction);
     }
 
     [Fact]
-    public void Executes_multiple_commands_in_order()
+    public void Executes_multiple_commands_in_order_with_parser()
     {
         var rover = new Rover(new Position(0, 0), Direction.North);
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'f', 'r', 'l', 'b' });
 
-        rover.Execute(new char[] {'f', 'r', 'f', 'l', 'b'});
+        rover.Execute(commands);
 
         Assert.Equal(new Position(1, 0), rover.Position);
+        Assert.Equal(Direction.North, rover.Direction);
+    }
+
+    [Fact]
+    public void Parse_returns_correct_commands()
+    {
+        var parser = new CommandParser();
+        var commands = parser.Parse(new char[] { 'f', 'l', 'r', 'b' }).ToList();
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        foreach (var cmd in commands)
+        {
+            cmd.Execute(rover);
+        }
+
+        Assert.Equal(new Position(0, 0), rover.Position);
         Assert.Equal(Direction.North, rover.Direction);
     }
 }

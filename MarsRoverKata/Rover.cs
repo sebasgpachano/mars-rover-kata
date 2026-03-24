@@ -59,23 +59,6 @@ public class Rover
         };
     }
 
-    public void Execute(char[] commands)
-    {
-        if (commands == null) throw new ArgumentNullException(nameof(commands));
-
-        foreach (var command in commands)
-        {
-            switch (char.ToLower(command))
-            {
-                case 'f': MoveForward(); break;
-                case 'b': MoveBackward(); break;
-                case 'l': TurnLeft(); break;
-                case 'r': TurnRight(); break;
-                default: throw new ArgumentException($"Invalid command '{command}'");
-            }
-        }
-    }
-
     public void Execute(IEnumerable<ICommand> commands)
 {
     if (commands == null)
