@@ -15,24 +15,22 @@ public class Rover
 
     public void MoveForward()
     {
-        Position = Direction switch
-        {
-            Direction.North => new Position(Position.X, Position.Y + 1),
-        Direction.South => new Position(Position.X, Position.Y - 1),
-        Direction.East  => new Position(Position.X + 1, Position.Y),
-        Direction.West  => new Position(Position.X - 1, Position.Y),
-        _ => Position
-        };
+        Position = GetNextPosition(1);
     }
 
     public void MoveBackward()
     {
-        Position = Direction switch
+        Position = GetNextPosition(-1);
+    }
+
+    private Position GetNextPosition(int step)
+    {
+        return Direction switch
         {
-            Direction.North => new Position(Position.X, Position.Y - 1),
-            Direction.South => new Position(Position.X, Position.Y + 1),
-            Direction.East  => new Position(Position.X - 1, Position.Y),
-            Direction.West  => new Position(Position.X + 1, Position.Y),
+            Direction.North => new Position(Position.X, Position.Y + step),
+            Direction.South => new Position(Position.X, Position.Y - step),
+            Direction.East  => new Position(Position.X + step, Position.Y),
+            Direction.West  => new Position(Position.X - step, Position.Y),
             _ => Position
         };
     }
