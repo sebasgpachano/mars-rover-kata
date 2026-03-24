@@ -8,6 +8,7 @@ public class Rover
     public Rover(Position position, Direction direction)
     {
         if (position == null) throw new ArgumentNullException(nameof(position));
+        if (!Enum.IsDefined(typeof(Direction), direction)) throw new ArgumentException("Invalid direction", nameof(direction));
         
         Position = position;
         Direction = direction;
