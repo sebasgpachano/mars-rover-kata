@@ -123,6 +123,14 @@ public class RoverTests
     }
 
     [Fact]
+    public void Execute_throws_when_commands_is_null()
+    {
+        var rover = new Rover(new Position(0, 0), Direction.North);
+
+        Assert.Throws<ArgumentNullException>(() => rover.Execute(null!));
+    }
+
+    [Fact]
     public void Parse_returns_correct_commands()
     {
         var parser = new CommandParser();
@@ -136,5 +144,21 @@ public class RoverTests
 
         Assert.Equal(new Position(0, 0), rover.Position);
         Assert.Equal(Direction.North, rover.Direction);
+    }
+
+    [Fact]
+    public void Parse_throws_when_input_is_null()
+    {
+        var parser = new CommandParser();
+
+        Assert.Throws<ArgumentNullException>(() => parser.Parse(null!));
+    }
+
+    [Fact]
+    public void Parse_throws_on_invalid_command()
+    {
+        var parser = new CommandParser();
+
+        Assert.Throws<ArgumentException>(() => parser.Parse(new[] { 'z' }).ToList());
     }
 }
