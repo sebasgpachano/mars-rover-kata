@@ -33,44 +33,32 @@ public class RoverTests
         Assert.Equal(new Position(0, -1), rover.Position);
     }
 
-    [Fact]
-    public void Turns_left_from_north_to_west()
+    [Theory]
+    [InlineData(Direction.North, Direction.West)]
+    [InlineData(Direction.West,  Direction.South)]
+    [InlineData(Direction.South, Direction.East)]
+    [InlineData(Direction.East,  Direction.North)]
+    public void TurnLeft_cycles_through_all_directions(Direction initial, Direction expected)
     {
-        var rover = new Rover(new Position(0, 0), Direction.North);
+        var rover = new Rover(new Position(0, 0), initial);
 
         rover.TurnLeft();
 
-        Assert.Equal(Direction.West, rover.Direction);
+        Assert.Equal(expected, rover.Direction);
     }
 
-    [Fact]
-    public void Turns_left_from_west_to_south()
+    [Theory]
+    [InlineData(Direction.North, Direction.East)]
+    [InlineData(Direction.East,  Direction.South)]
+    [InlineData(Direction.South, Direction.West)]
+    [InlineData(Direction.West,  Direction.North)]
+    public void TurnRight_cycles_through_all_directions(Direction initial, Direction expected)
     {
-        var rover = new Rover(new Position(0, 0), Direction.West);
-
-        rover.TurnLeft();
-
-        Assert.Equal(Direction.South, rover.Direction);
-    }
-
-    [Fact]
-    public void Turns_right_from_north_to_east()
-    {
-        var rover = new Rover(new Position(0, 0), Direction.North);
+        var rover = new Rover(new Position(0, 0), initial);
 
         rover.TurnRight();
 
-        Assert.Equal(Direction.East, rover.Direction);
-    }
-
-    [Fact]
-    public void Turns_right_from_east_to_south()
-    {
-        var rover = new Rover(new Position(0, 0), Direction.East);
-
-        rover.TurnRight();
-
-        Assert.Equal(Direction.South, rover.Direction);
+        Assert.Equal(expected, rover.Direction);
     }
 
     [Fact]
