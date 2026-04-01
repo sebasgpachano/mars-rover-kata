@@ -2,8 +2,8 @@ namespace MarsRoverKata;
 
 public class TurnLeftCommand : ICommand
 {
-    public void Execute(Rover rover)
-    {
-        rover.TurnLeft();
-    }
+    public static readonly TurnLeftCommand Instance = new();
+    private TurnLeftCommand() { }
+
+    public void Execute(Rover rover) => rover.TurnLeft();
 }
