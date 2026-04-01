@@ -1,64 +1,25 @@
+using System.Data;
+
 namespace MarsRoverKata;
 
 public class Rover
 {
     public Position Position { get; private set; }
-    public Direction Direction { get; private set; }
+    public IDirectionState State { get; private set; }
 
-    public Rover(Position position, Direction direction)
+    public Rover(Position position, IDirectionState initialState)
     {
         if (position == null) throw new ArgumentNullException(nameof(position));
-        if (!Enum.IsDefined(typeof(Direction), direction)) throw new ArgumentException("Invalid direction", nameof(direction));
+        if (initialState == null) throw new ArgumentNullException(nameof(initialState));
         
         Position = position;
-        Direction = direction;
+        State = initialState;
     }
 
-    public void MoveForward()
-    {
-        Position = GetNextPosition(1);
-    }
-
-    public void MoveBackward()
-    {
-        Position = GetNextPosition(-1);
-    }
-
-    private Position GetNextPosition(int step)
-    {
-        return Direction switch
-        {
-            Direction.North => new Position(Position.X, Position.Y + step),
-            Direction.South => new Position(Position.X, Position.Y - step),
-            Direction.East  => new Position(Position.X + step, Position.Y),
-            Direction.West  => new Position(Position.X - step, Position.Y),
-            _ => Position
-        };
-    }
-
-    public void TurnLeft()
-    {
-        Direction = Direction switch
-        {
-            Direction.North => Direction.West,
-            Direction.West  => Direction.South,
-            Direction.South => Direction.East,
-            Direction.East  => Direction.North,
-            _ => Direction
-        };
-    }
-
-    public void TurnRight()
-    {
-        Direction = Direction switch
-        {
-            Direction.North => Direction.East,
-            Direction.East  => Direction.South,
-            Direction.South => Direction.West,
-            Direction.West  => Direction.North,
-            _ => Direction
-        };
-    }
+    public void MoveForward()  => Position = State.MoveForward(Position);
+    public void MoveBackward() => Position = State.MoveBackward(Position);
+    public void TurnLeft()     => State = State.TurnLeft();
+    public void TurnRight()    => State = State.TurnRight();
 
     public void Execute(IEnumerable<ICommand> commands)
 {
