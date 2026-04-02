@@ -1,5 +1,3 @@
-using MarsRoverKata;
-
 namespace MarsRoverKata.Tests;
 
 public class CommandParserTests
@@ -22,7 +20,7 @@ public class CommandParserTests
     {
         var parser = new CommandParser();
 
-        var first  = parser.Parse(new[] { 'f' }).ToList();
+        var first = parser.Parse(new[] { 'f' }).ToList();
         var second = parser.Parse(new[] { 'f' }).ToList();
 
         Assert.Same(first[0], second[0]);

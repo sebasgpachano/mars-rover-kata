@@ -2,23 +2,11 @@ namespace MarsRoverKata;
 
 public class EastState : IDirectionState
 {
-    public Position MoveForward(Position current)
-    {
-        return new Position(current.X + 1, current.Y);
-    }
+    public static readonly EastState Instance = new();
+    private EastState() { }
 
-    public Position MoveBackward(Position current)
-    {
-        return new Position(current.X - 1, current.Y);
-    }
-
-    public IDirectionState TurnLeft()
-    {
-        return new NorthState();
-    }
-
-    public IDirectionState TurnRight()
-    {
-        return new SouthState();
-    }
+    public Position MoveForward(Position current)  => current with { X = current.X + 1 };
+    public Position MoveBackward(Position current) => current with { X = current.X - 1 };
+    public IDirectionState TurnLeft()  => NorthState.Instance;
+    public IDirectionState TurnRight() => SouthState.Instance;
 }

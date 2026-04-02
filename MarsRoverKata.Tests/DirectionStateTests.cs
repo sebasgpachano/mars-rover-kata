@@ -1,52 +1,70 @@
-using MarsRoverKata;
-
 namespace MarsRoverKata.Tests;
 
 public class DirectionStateTests
 {
     [Theory]
-    [InlineData(typeof(NorthState), 0, 0, 0, 1)]
-    [InlineData(typeof(EastState),  0, 0, 1, 0)]
-    [InlineData(typeof(SouthState), 0, 0, 0, -1)]
-    [InlineData(typeof(WestState),  0, 0, -1, 0)]
-    public void MoveForward_returns_correct_position(Type stateType, int x, int y, int expectedX, int expectedY)
+    [MemberData(nameof(MoveForwardCases))]
+    public void MoveForward_returns_correct_position(IDirectionState state, int x, int y, int expectedX, int expectedY)
     {
-        var state = (IDirectionState)Activator.CreateInstance(stateType)!;
         var result = state.MoveForward(new Position(x, y));
         Assert.Equal(new Position(expectedX, expectedY), result);
     }
 
+    public static IEnumerable<object[]> MoveForwardCases =>
+        new List<object[]>
+        {
+            new object[] { NorthState.Instance, 0, 0, 0, 1 },
+            new object[] { EastState.Instance,  0, 0, 1, 0 },
+            new object[] { SouthState.Instance, 0, 0, 0, -1 },
+            new object[] { WestState.Instance,  0, 0, -1, 0 }
+        };
+
     [Theory]
-    [InlineData(typeof(NorthState), 0, 0, 0, -1)]
-    [InlineData(typeof(EastState),  0, 0, -1, 0)]
-    [InlineData(typeof(SouthState), 0, 0, 0, 1)]
-    [InlineData(typeof(WestState),  0, 0, 1, 0)]
-    public void MoveBackward_returns_correct_position(Type stateType, int x, int y, int expectedX, int expectedY)
+    [MemberData(nameof(MoveBackwardCases))]
+    public void MoveBackward_returns_correct_position(IDirectionState state, int x, int y, int expectedX, int expectedY)
     {
-        var state = (IDirectionState)Activator.CreateInstance(stateType)!;
         var result = state.MoveBackward(new Position(x, y));
         Assert.Equal(new Position(expectedX, expectedY), result);
     }
 
-    [Theory]
-    [InlineData(typeof(NorthState), typeof(WestState))]
-    [InlineData(typeof(WestState),  typeof(SouthState))]
-    [InlineData(typeof(SouthState), typeof(EastState))]
-    [InlineData(typeof(EastState),  typeof(NorthState))]
-    public void TurnLeft_returns_correct_state(Type initialType, Type expectedType)
-    {
-        var state = (IDirectionState)Activator.CreateInstance(initialType)!;
-        Assert.IsType(expectedType, state.TurnLeft());
-    }
+    public static IEnumerable<object[]> MoveBackwardCases =>
+        new List<object[]>
+        {
+            new object[] { NorthState.Instance, 0, 0, 0, -1 },
+            new object[] { EastState.Instance,  0, 0, -1, 0 },
+            new object[] { SouthState.Instance, 0, 0, 0, 1 },
+            new object[] { WestState.Instance,  0, 0, 1, 0 }
+        };
 
     [Theory]
-    [InlineData(typeof(NorthState), typeof(EastState))]
-    [InlineData(typeof(EastState),  typeof(SouthState))]
-    [InlineData(typeof(SouthState), typeof(WestState))]
-    [InlineData(typeof(WestState),  typeof(NorthState))]
-    public void TurnRight_returns_correct_state(Type initialType, Type expectedType)
+    [MemberData(nameof(TurnLeftCases))]
+    public void TurnLeft_returns_correct_state(IDirectionState initial, Type expectedType)
     {
-        var state = (IDirectionState)Activator.CreateInstance(initialType)!;
-        Assert.IsType(expectedType, state.TurnRight());
+        Assert.IsType(expectedType, initial.TurnLeft());
     }
+
+    public static IEnumerable<object[]> TurnLeftCases =>
+        new List<object[]>
+        {
+            new object[] { NorthState.Instance, typeof(WestState) },
+            new object[] { WestState.Instance, typeof(SouthState) },
+            new object[] { SouthState.Instance, typeof(EastState) },
+            new object[] { EastState.Instance, typeof(NorthState) }
+        };
+
+    [Theory]
+    [MemberData(nameof(TurnRightCases))]
+    public void TurnRight_returns_correct_state(IDirectionState initial, Type expectedType)
+    {
+        Assert.IsType(expectedType, initial.TurnRight());
+    }
+
+    public static IEnumerable<object[]> TurnRightCases =>
+        new List<object[]>
+        {
+            new object[] { NorthState.Instance, typeof(EastState) },
+            new object[] { EastState.Instance, typeof(SouthState) },
+            new object[] { SouthState.Instance, typeof(WestState) },
+            new object[] { WestState.Instance, typeof(NorthState) }
+        };
 }
